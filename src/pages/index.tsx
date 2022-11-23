@@ -21,7 +21,6 @@ import {
   ChatIcon,
   CodeIcon,
   ArrowSmUpIcon as LinkIcon,
-  LibraryIcon,
 } from '@heroicons/react/outline'
 import {
   BrowserEvent,

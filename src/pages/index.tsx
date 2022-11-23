@@ -13,7 +13,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 
 import SearchBarWithAnalytics from '../theme/SearchBar'
 import { TraceEvent } from '@uniswap/analytics'
-import { GitHub, ArrowUpRight as LinkIcon } from 'react-feather'
 
 import {
   InformationCircleIcon,
@@ -21,6 +20,8 @@ import {
   BookOpenIcon,
   ChatIcon,
   CodeIcon,
+  ArrowSmUpIcon as LinkIcon,
+  LibraryIcon,
 } from '@heroicons/react/outline'
 import {
   BrowserEvent,
@@ -32,27 +33,21 @@ import {
 export const actions = [
   {
     title: 'What is Uniswap',
-    href: '#',
     icon: InformationCircleIcon,
-    to: './concepts/overview',
+    to: '/concepts/overview',
     text: `Learn about the core concepts of the Uniswap Protocol. Swaps, Pools, Concentrated Liquidity and more.`,
-    name: ElementName.WHAT_IS_UNISWAP,
   },
   {
     title: 'Integrate with Uniswap',
-    href: '#',
     icon: QuestionMarkCircleIcon,
-    to: './sdk/v3/overview',
+    to: '/sdk/v3/overview',
     text: `Learn how to integrate with Uniswap by building a dApp through guided examples.`,
-    name: ElementName.V3_SDK,
   },
   {
     title: 'The Uniswap smart contracts',
-    href: '#',
     icon: BookOpenIcon,
-    to: './contracts/v3/overview',
+    to: '/contracts/v3/overview',
     text: `Learn about the architecture of the Uniswap Protocol smart contracts through guided examples`,
-    name: ElementName.SMART_CONTRACT_OVERVIEW,
   },
 ]
 
@@ -61,30 +56,24 @@ export const developerLinks = [
     title: 'uniswap-v3-core',
     href: 'https://github.com/Uniswap/uniswap-v3-core',
     icon: CodeIcon,
-    name: ElementName.V3_CORE,
   },
   {
     title: 'uniswap-v3-sdk',
     href: 'https://github.com/Uniswap/uniswap-v3-sdk',
     icon: CodeIcon,
-    name: ElementName.V3_SDK,
   },
   {
     title: 'uniswap-v3-periphery',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery',
     icon: CodeIcon,
-    name: ElementName.V3_PERIPHERY,
   },
   {
     title: 'Deployment addresses',
     href: 'https://github.com/Uniswap/uniswap-v3-periphery/blob/main/deploys.md',
-    name: ElementName.V3_CONTRACT_ADDRESS,
   },
   {
     title: '@uniswap/widgets',
     href: 'https://www.npmjs.com/package/@uniswap/widgets',
-    icon: CodeIcon,
-    name: ElementName.V3_WIDGETS,
   },
 ]
 
@@ -92,70 +81,59 @@ export const dAppGuides = [
   {
     title: 'Setup your environment',
     text: 'Prepare your local environment by installing the required dependencies',
-    to: './sdk/v3/guides/quick-start',
-    name: ElementName.SDK_QUICK_START,
+    to: '/sdk/v3/guides/quick-start',
   },
   {
     title: 'Fetch token prices',
     text: 'Fetch the price of tokens in a specific Pool',
-    to: './sdk/v3/guides/fetching-prices',
-    name: ElementName.PROVIDE_LIQUIDITY,
+    to: '/sdk/v3/guides/fetching-prices',
   },
   {
     title: 'Create a Trade',
     text: 'Fetch a Quote for a Trade and execute the Trade',
-    to: './sdk/v3/guides/creating-a-trade',
-    name: ElementName.BUILD_ORACLE,
+    to: '/sdk/v3/guides/creating-a-trade',
   },
   {
     title: 'Route trades',
     text: 'Use Routing to get optimized prices for your Trades',
-    to: './sdk/v3/guides/auto-router',
-    name: ElementName.IMPLEMENT_SWAP,
+    to: '/sdk/v3/guides/auto-router',
   },
   {
     title: 'Provide liquidity',
     text: "Contribute to a Pool's liquidity by using tokens to earn fees",
-    to: './sdk/v3/guides/liquidity/minting',
-    name: ElementName.IMPLEMENT_SWAP,
+    to: '/sdk/v3/guides/liquidity/minting',
   },
   {
     title: 'UI Component',
     text: 'Integrate with the Swap Widget, a React component that works out of the box ',
-    to: './sdk/swap-widget/overview',
-    name: ElementName.EMBED_SWAP_WIDGET,
+    to: '/sdk/swap-widget/overview',
   },
 ]
 export const smartContractGuides = [
   {
     title: 'Setup your environment',
     text: 'Prepare your local environment by installing the required dependencies',
-    to: './contracts/v3/guides/local-environment',
-    name: ElementName.SDK_QUICK_START,
+    to: '/contracts/v3/guides/local-environment',
   },
   {
     title: 'Implement a Swap',
     text: 'Start swapping from a smart contract in Solidity',
-    to: './contracts/v3/guides/swaps/single-swaps',
-    name: ElementName.EMBED_SWAP_WIDGET,
+    to: '/contracts/v3/guides/swaps/single-swaps',
   },
   {
     title: 'Provide Liquidity',
     text: 'Provide liquidity from a smart contract in Solidity',
-    to: '.contracts/v3/guides/providing-liquidity/setting-up',
-    name: ElementName.PROVIDE_LIQUIDITY,
+    to: '/contracts/v3/guides/providing-liquidity/setting-up',
   },
   {
     title: 'Mine Liquidity',
     text: 'Start Mining liquidity from a smart contract in Solidity',
-    to: './contracts/v3/guides/liquidity-mining/overview',
-    name: ElementName.BUILD_ORACLE,
+    to: '/contracts/v3/guides/liquidity-mining/overview',
   },
   {
     title: 'Implement Flash Swaps',
     text: 'Implement Flash Swaps from a smart contract in Solidity',
-    to: './contracts/v3/guides/flash-integrations/inheritance-constructors',
-    name: ElementName.IMPLEMENT_SWAP,
+    to: '/contracts/v3/guides/flash-integrations/inheritance-constructors',
   },
 ]
 
@@ -266,6 +244,11 @@ const IconWrapper = styled.div`
   border-radius: 4px;
 `
 
+const LinkIconWrapper = styled(IconWrapper)`
+  transform: rotate(45deg);
+  opacity: 0.25;
+`
+
 const TopSection = styled.div`
   width: 100%;
   align-items: center;
@@ -313,18 +296,6 @@ const StyledTitleImage = styled(StyledImage)`
   mask-image: linear-gradient(rgba(0, 0, 0, 1), transparent);
 `
 
-const StyledGithubIcon = styled(GitHub)`
-  svg {
-    fill: var(--ifm-font-color-base);
-  }
-`
-
-const StyledLinkIcon = styled(LinkIcon)`
-  svg {
-    fill: var(--ifm-font-color-base);
-  }
-`
-
 const HideMedium = styled.div`
   @media (max-width: 960px) {
     display: none;
@@ -360,8 +331,8 @@ export default function Home() {
           <Row>
             {actions.map((action) => (
               <TraceEvent
-                key={action.name}
-                element={action.name}
+                key={action.to}
+                element={action.to}
                 events={[BrowserEvent.onClick]}
                 name={EventName.PAGE_CLICKED}
                 section={SectionName.WELCOME_LINKS}
@@ -372,7 +343,9 @@ export default function Home() {
                       <IconWrapper>
                         <action.icon style={{ width: '24px' }} />
                       </IconWrapper>
-                      <StyledLinkIcon />
+                      <LinkIconWrapper>
+                        <LinkIcon />
+                      </LinkIconWrapper>
                     </TopSection>
                     <h3 style={{ marginBottom: '.75rem', fontWeight: 500 }}>{action.title}</h3>
                     <p style={{ marginBottom: '0.5rem', fontWeight: 300 }}>{action.text}</p>
@@ -394,11 +367,11 @@ export default function Home() {
             <div>
               {dAppGuides.map((action) => (
                 <TraceEvent
-                  key={action.name}
-                  element={action.name}
+                  key={action.to}
+                  element={action.to}
                   events={[BrowserEvent.onClick]}
                   name={EventName.PAGE_CLICKED}
-                  section={SectionName.DEVELOPER_LINKS}
+                  section={'DAPP_LINKS'}
                 >
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
@@ -406,7 +379,9 @@ export default function Home() {
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                           <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
                         </div>
-                        <StyledLinkIcon />
+                        <LinkIconWrapper>
+                          <LinkIcon />
+                        </LinkIconWrapper>
                       </LinkRow>
                       <p style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.text}</p>
                     </Card>
@@ -421,11 +396,11 @@ export default function Home() {
             <div>
               {smartContractGuides.map((action) => (
                 <TraceEvent
-                  key={action.name}
-                  element={action.name}
+                  key={action.to}
+                  element={action.to}
                   events={[BrowserEvent.onClick]}
                   name={EventName.PAGE_CLICKED}
-                  section={SectionName.DEVELOPER_LINKS}
+                  section={'SMART_CONTRACT_LINKS'}
                 >
                   <Link style={{ textDecoration: 'none' }} key={action.title} to={action.to}>
                     <Card key={action.title} style={{ marginBottom: '1rem' }}>
@@ -433,7 +408,9 @@ export default function Home() {
                         <div style={{ display: 'flex', alignItems: 'center' }}>
                           <h3 style={{ marginBottom: '0rem' }}>{action.title}</h3>
                         </div>
-                        <StyledLinkIcon />
+                        <LinkIconWrapper>
+                          <LinkIcon />
+                        </LinkIconWrapper>
                       </LinkRow>
                       <p style={{ marginBottom: '0rem', fontWeight: 300 }}>{action.text}</p>
                     </Card>
@@ -461,22 +438,30 @@ export default function Home() {
             <h2>Developer Links</h2>
             {developerLinks.map((action) => (
               <TraceEvent
-                key={action.name}
+                key={action.href}
+                element={action.href}
                 name={EventName.PAGE_CLICKED}
-                element={action.name}
                 events={[BrowserEvent.onClick]}
                 section={SectionName.DEVELOPER_LINKS}
               >
-                <Link style={{}} to={action.to}>
+                <Link style={{}} to={action.href}>
                   <div
                     style={{
                       display: 'flex',
                       justifyContent: 'start',
-                      marginBottom: '0.5rem',
+                      width: '100%',
+                      alignItems: 'start',
                     }}
                   >
-                    <StyledGithubIcon />
+                    {action.icon && (
+                      <IconWrapper>
+                        <action.icon style={{ width: '24px' }} />
+                      </IconWrapper>
+                    )}
                     <h3 style={{ fontWeight: 300 }}>{action.title}</h3>
+                    <LinkIconWrapper>
+                      <LinkIcon style={{ width: '24px' }} />
+                    </LinkIconWrapper>
                   </div>
                 </Link>
               </TraceEvent>
@@ -525,7 +510,7 @@ export default function Home() {
           >
             <Link style={{ textDecoration: 'none' }} href={'https://github.com/Uniswap'}>
               <CenterCard>
-                <StyledGithubIcon />
+                <CodeIcon style={{ width: '48px', height: '48px' }} />
                 <div>
                   <h3>GitHub</h3>
                   <p>View all Uniswap repositories.</p>
